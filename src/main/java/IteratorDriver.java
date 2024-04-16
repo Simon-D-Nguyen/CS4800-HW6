@@ -40,12 +40,16 @@ public class IteratorDriver {
         ));
 
 
-        Iterator<Message> iter = bob.iterator(cate);
-
+        System.out.println("--- Bob being iterated for Alice");
+        Iterator<Message> iter = bob.iterator(alice);
         while(iter.hasNext()){
             System.out.println(iter.next());
         }
+
+        System.out.println("--- Cate being iterated for Alice");
+        Iterator<Message> iter2 = cate.iterator(alice);
+        while(iter2.hasNext()){
+            System.out.println(iter2.next());
+        }
     }
-
-
 }
