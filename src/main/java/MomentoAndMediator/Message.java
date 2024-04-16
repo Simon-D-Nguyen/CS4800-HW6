@@ -44,7 +44,15 @@ public class Message {
 
     @Override
     public String toString() {
-        String output = getTimestamp() + " -> " + content + "\n";
-        return output;
+        String time = getTimestamp() + System.lineSeparator();
+        String send = "\tSender: " +
+                sender.getName() +
+                System.lineSeparator();
+        String recievers = "\tRecipients:";
+        for (User re : recipients) {
+            recievers = recievers + " " + re.getName() + ", ";
+        }
+
+        return time + send + recievers + System.lineSeparator() + content;
     }
 }

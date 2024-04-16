@@ -81,7 +81,10 @@ public class MessageTest {
     public void testToString() {
         //Given
         String time = LocalDateTime.now().toString().split("\\.")[0];
-        String expected = time + " -> test\n";
+        String expected = time +
+                System.lineSeparator() + "\tSender: testUser" +
+                System.lineSeparator() + "\tRecipients:" +
+                System.lineSeparator() + "test";
 
         //When
         Message tester =
