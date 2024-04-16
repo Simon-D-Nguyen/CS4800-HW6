@@ -16,7 +16,12 @@ public class ChatHistory {
     }
 
 
-    public Message getLatestMessage() {
+    public void removeMessage(Message message) {
+        history.remove(message);
+    }
+
+
+    public Message getLatestSentMessage() {
         return history.getFirst();
     }
 }

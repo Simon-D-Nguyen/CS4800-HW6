@@ -3,6 +3,8 @@ package MomentoAndMediator;
 public class User {
     private String name;
     private int id;
+    private ChatHistory messageHistory;
+    private MessageMomento momento;
     private ChatServer server;
 
 
@@ -10,6 +12,8 @@ public class User {
         this.name = name;
         this.id = id;
         this.server = null;
+        this.momento = new MessageMomento(new Message(this, null, ""));
+        this.messageHistory = new ChatHistory();
     }
 
 
@@ -41,6 +45,7 @@ public class User {
     public void sendMessage(Message message){
         if(hasServer()){
             server.sendMessage(message);
+            messageHistory.addMessage(message);
         }
         else{
             System.out.println("No server saved");
@@ -49,21 +54,20 @@ public class User {
 
 
     public void sendMessage(ChatServer server, Message message) {
-        server.sendMessage(message);
-    }
-
-
-    public void recieveMessage() {
-        if(hasServer()){
-            //;
-        }
-        else {
-            System.out.println("No server saved");
+        if (server.sendMessage(message)) {
+            momento.setState(message);
+            messageHistory.addMessage(message);
         }
     }
 
 
-    public void undoMessage() {
+    public void receiveMessage(Message message) {
+        messageHistory.addMessage(message);
+    }
 
+
+    public void undoLastSentMessage() {
+        Message lastSent = momento.getState();
+        messageHistory.removeMessage(lastSent);
     }
 }
