@@ -53,6 +53,9 @@ public class Message {
             recievers = recievers + " " + re.getName() + ", ";
         }
 
-        return time + send + recievers + System.lineSeparator() + content;
+        String output = time + send + recievers + System.lineSeparator()
+                + content + System.lineSeparator() + System.lineSeparator();
+
+        return output;
     }
 }
