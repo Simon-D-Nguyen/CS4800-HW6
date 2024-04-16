@@ -1,5 +1,7 @@
 package MomentoAndMediator;
 
+import java.util.ArrayList;
+
 public class User {
     private String name;
     private int id;
@@ -12,7 +14,7 @@ public class User {
         this.name = name;
         this.id = id;
         this.server = null;
-        this.momento = new MessageMomento(new Message(this, null, ""));
+        this.momento = new MessageMomento(new Message(this, new ArrayList<User>(), ""));
         this.messageHistory = new ChatHistory();
     }
 
@@ -43,8 +45,8 @@ public class User {
 
 
     public void sendMessage(Message message){
-        if(hasServer()){
-            server.sendMessage(message);
+        if(hasServer() && server.sendMessage(message)){
+            momento.setState(message);
             messageHistory.addMessage(message);
         }
         else{
@@ -66,8 +68,23 @@ public class User {
     }
 
 
+    public void blockUser(User user){
+        server.blockUser(this, user);
+    }
+
+
     public void undoLastSentMessage() {
         Message lastSent = momento.getState();
         messageHistory.removeMessage(lastSent);
+    }
+
+
+    public String getChatHistory(){
+        return messageHistory.getChatHistory();
+    }
+
+
+    public void viewChatHistory(User user) {
+        System.out.println(server.getUserChatHistory(this, user));
     }
 }
