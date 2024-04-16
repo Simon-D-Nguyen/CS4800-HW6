@@ -7,11 +7,11 @@ import java.util.Collection;
 
 public class Message {
     private User sender;
-    private Collection<Integer> recipients;
+    private Collection<User> recipients;
     private LocalDateTime timestamp;
     private String content;
 
-    public Message(User sender, Collection<Integer> recipients, String content){
+    public Message(User sender, Collection<User> recipients, String content){
         this.sender = sender;
         this.recipients = new ArrayList<>(recipients);
         this.content = content;
@@ -19,16 +19,14 @@ public class Message {
         this.timestamp = LocalDateTime.now();
     }
 
-    public int getSender() {
-        return sender.getId();
+    public User getSender() {
+        return sender;
     }
 
 
-    public Integer[] getRecipients() {
-        Integer[] output = new Integer[recipients.size()];
-        output = recipients.toArray(output);
-
-        return output;
+    public User[] getRecipients() {
+        User[] output = new User[recipients.size()];
+        return recipients.toArray(output);
     }
 
 

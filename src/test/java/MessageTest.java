@@ -17,12 +17,12 @@ public class MessageTest {
     @Test
     public void testGetSender(){
         //Given
-        int expected = 0;
+        User expected = testUser;
 
         //When
         Message tester =
-                new Message(testUser, new ArrayList<Integer>(), "test");
-        int actual = tester.getSender();
+                new Message(testUser, new ArrayList<User>(), "test");
+        User actual = tester.getSender();
 
         //Then
         assertEquals(expected, actual);
@@ -32,15 +32,15 @@ public class MessageTest {
     @Test
     public void testGetRecipients(){
         //Given
-        Integer[] expected = {1, 2};
+        User user1 = new User("one", 1);
+        User[] expected = {user1};
 
         //When
-        ArrayList<Integer> iDs = new ArrayList<>();
-        iDs.add(1);
-        iDs.add(2);
+        ArrayList<User> iDs = new ArrayList<>();
+        iDs.add(user1);
         Message tester =
                 new Message(testUser, iDs, "test");
-        Integer[] actual = tester.getRecipients();
+        User[] actual = tester.getRecipients();
 
         //Then
         assertArrayEquals(expected, actual);
@@ -54,7 +54,7 @@ public class MessageTest {
 
         //When
         Message tester =
-                new Message(testUser, new ArrayList<Integer>(), "test");
+                new Message(testUser, new ArrayList<User>(), "test");
         String actual = tester.getTimestamp();
 
         //Then
@@ -69,7 +69,7 @@ public class MessageTest {
 
         //When
         Message tester =
-                new Message(testUser, new ArrayList<Integer>(), "test");
+                new Message(testUser, new ArrayList<User>(), "test");
         String actual = tester.getContent();
 
         //Then
