@@ -15,6 +15,7 @@ public class ChatHistory {
         history.addFirst(message);
     }
 
+
     public void sentMessage(Message message) {
         momento.setState(message);
         addMessage(message);
@@ -24,6 +25,7 @@ public class ChatHistory {
     public void removeMessage(Message message) {
         history.remove(message);
     }
+
 
     public void removeLastSent() {
         Message lastSent = momento.getState();

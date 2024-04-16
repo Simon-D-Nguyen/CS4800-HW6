@@ -9,6 +9,7 @@ public class Message {
     private LocalDateTime timestamp;
     private String content;
 
+
     public Message(User sender, Collection<User> recipients, String content){
         this.sender = sender;
         this.recipients = new ArrayList<>(recipients);
@@ -16,6 +17,7 @@ public class Message {
 
         this.timestamp = LocalDateTime.now();
     }
+
 
     public User getSender() {
         return sender;

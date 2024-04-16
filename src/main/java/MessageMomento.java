@@ -3,6 +3,7 @@ public class MessageMomento {
     private String timestamp;
     private String content;
 
+
     public MessageMomento(){
         this.state = null;
         this.timestamp = "";
@@ -12,6 +13,7 @@ public class MessageMomento {
     public Message getState(){
         return this.state;
     }
+
 
     public void setState(Message state){
         this.state = state;
