@@ -56,7 +56,7 @@ public class ChatServer {
 
         if(isRegisteredUser(sender)) {
             for(User recipient : message.getRecipients()) {
-                if(isRegisteredUser(recipient) && isNotBlocked(sender, recipient)) {
+                if(isRegisteredUser(recipient) && isNotBlocked(recipient, sender)) {
                     recipient.receiveMessage(message);
                 }
             }
@@ -73,4 +73,13 @@ public class ChatServer {
         }
     }
 
+
+    public String getUserChatHistory(User requester, User user) {
+        if(isNotBlocked(user, requester)) {
+            return user.getChatHistory();
+        }
+        else {
+            return "Not available";
+        }
+    }
 }
