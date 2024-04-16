@@ -75,4 +75,21 @@ public class MessageTest {
         //Then
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    public void testToString() {
+        //Given
+        String time = LocalDateTime.now().toString().split("\\.")[0];
+        String expected = time + " -> test\n";
+
+        //When
+        Message tester =
+                new Message(testUser, new ArrayList<User>(), "test");
+        String actual = tester.toString();
+
+        //Then
+        assertEquals(expected, actual);
+    }
+
 }

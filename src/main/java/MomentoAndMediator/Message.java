@@ -40,4 +40,11 @@ public class Message {
     public String getContent() {
         return content;
     }
+
+
+    @Override
+    public String toString() {
+        String output = getTimestamp() + " -> " + content + "\n";
+        return output;
+    }
 }
