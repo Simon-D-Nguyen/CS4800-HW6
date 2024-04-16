@@ -1,9 +1,5 @@
-import MomentoAndMediator.MessageMomento;
-import MomentoAndMediator.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import MomentoAndMediator.Message;
-import MomentoAndMediator.ChatHistory;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,3 @@
-package MomentoAndMediator;
-
 import java.util.ArrayList;
 
 public class MomentoAndMediatorDriver {

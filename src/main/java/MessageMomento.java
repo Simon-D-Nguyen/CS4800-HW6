@@ -1,5 +1,3 @@
-package MomentoAndMediator;
-
 public class MessageMomento {
     private Message state;
     private String timestamp;
