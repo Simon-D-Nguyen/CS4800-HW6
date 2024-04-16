@@ -25,4 +25,19 @@ public class ChatHistoryTest {
         //Then
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    public void testGetChatHistory() {
+        //Given
+        User testUser = new User("", 0);
+        String expected = "";
+
+        //When
+        ChatHistory history = new ChatHistory();
+        String actual = history.getChatHistory();
+
+        //Then
+        assertEquals(expected, actual);
+    }
 }

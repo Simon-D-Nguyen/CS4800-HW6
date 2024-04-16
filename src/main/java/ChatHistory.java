@@ -1,6 +1,8 @@
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 
-public class ChatHistory {
+public class ChatHistory implements IterableByUser{
     private final LinkedList<Message> history;
     private MessageMomento momento;
 
@@ -44,5 +46,16 @@ public class ChatHistory {
             output = output + m.toString();
         }
         return output;
+    }
+
+
+    public Collection<Message> getMessages(){
+        return history;
+    }
+
+
+    @Override
+    public Iterator iterator(User userToSearchWith) {
+        return new SearchMessagesByUser(this, userToSearchWith);
     }
 }
