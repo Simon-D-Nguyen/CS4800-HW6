@@ -1,12 +1,35 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+
 public class UserTest {
+
+    private static final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private static final ByteArrayOutputStream err = new ByteArrayOutputStream();
+    private static final PrintStream originalOut = System.out;
+    private static final PrintStream originalErr = System.err;
+
+    @BeforeAll
+    public static void setStreams() {
+        System.setOut(new PrintStream(out));
+        System.setErr(new PrintStream(err));
+    }
+
+    @AfterAll
+    public static void restoreInitialStreams() {
+        System.setOut(originalOut);
+        System.setErr(originalErr);
+    }
+
 
     @Test
     public void testGetName(){
@@ -63,6 +86,60 @@ public class UserTest {
 
         //THEN
         assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void testSendMessage() {
+        //GIVEN
+        User one = new User("one", 1);
+        User two = new User("two", 2);
+        ChatServer server = new ChatServer();
+        server.registerUser(one);
+        server.registerUser(two);
+        ArrayList<User> recipients = new ArrayList<>();
+        recipients.add(two);
+        one.sendMessage(new Message(
+                one,
+                recipients,
+                "hello"
+        ));
+        String expected = "";
+
+
+        //WHEN
+        String actual = out.toString();
+
+
+        //THEN
+        assertEquals(expected, actual);
+
+    }
+
+
+    @Test
+    public void testOtherSendMessage() {
+        //GIVEN
+        User one = new User("one", 1);
+        User two = new User("two", 2);
+        ChatServer server = new ChatServer();
+        ArrayList<User> recipients = new ArrayList<>();
+        recipients.add(two);
+        one.sendMessage(server, new Message(
+                one,
+                recipients,
+                "hello"
+        ));
+        String expected = "";
+
+
+        //WHEN
+        String actual = out.toString();
+
+
+        //THEN
+        assertEquals(expected, actual);
+
     }
 
 
