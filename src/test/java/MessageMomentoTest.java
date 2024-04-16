@@ -25,7 +25,7 @@ public class MessageMomentoTest {
 
 
         //When
-        MessageMomento momento = new MessageMomento(newMessage);
+        MessageMomento momento = new MessageMomento();
         Message actual = momento.getState();
 
 
@@ -44,7 +44,7 @@ public class MessageMomentoTest {
 
 
         //When
-        MessageMomento momento = new MessageMomento(newMessage);
+        MessageMomento momento = new MessageMomento();
         momento.setState(new Message(
                 new User("test", 1),
                 new ArrayList<User>(),

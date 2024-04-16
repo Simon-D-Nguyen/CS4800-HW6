@@ -5,10 +5,10 @@ public class MessageMomento {
     private String timestamp;
     private String content;
 
-    public MessageMomento(Message message){
-        this.state = message;
-        this.timestamp = message.getTimestamp();
-        this.content = message.getContent();
+    public MessageMomento(){
+        this.state = null;
+        this.timestamp = "";
+        this.content = "";
     }
 
     public Message getState(){
